@@ -41,7 +41,10 @@
         let getLocalPath (remotePath : string) =
             if not (remotePath.ToLower().StartsWith(remoteRoot.ToLower())) then
                 raise <| ArgumentException(sprintf "Remote path must start with configured remote root %s" remoteRoot, "remoteRoot")
-            Path.Combine(localRoot, remotePath.Substring(remoteRoot.Length).Replace("/", "\\").TrimStart('\\'))
+            Path.Combine(localRoot, 
+                         remotePath.Substring(remoteRoot.Length)
+                                   .Replace('/', IO.Path.DirectorySeparatorChar)
+                                   .TrimStart(IO.Path.DirectorySeparatorChar))
 
         let delayTransfer (stream : Stream) =
             if transferDelay > 0<s/MB> then

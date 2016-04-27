@@ -27,10 +27,10 @@
         let system = System.create "system" <| Configuration.load ()
         let sftp = spawn system "sftp" <| sftpActor clientFactory
 
-        let localPath = UncPath @"C:\Temp\t.txt"
+        let localPath = UncPath uploadFileName
         let remotePath = Url "/152818/no/open/test/12345.txt"
         sftp <! UploadFile (localPath, remotePath)
-        let localPath = UncPath @"C:\Temp\t.bak"
+        let localPath = UncPath downloadFileName
         sftp <! DownloadFile (localPath, remotePath)
         printfn ""
 

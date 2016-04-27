@@ -39,3 +39,6 @@ let ensureParentDirectoryExists (connection : ISftpClient) (remotePath : string)
         if not (connection.DirectoryExists(dir)) then
             createDirectoryTree connection "" (dir.Split([|'/'|], StringSplitOptions.RemoveEmptyEntries) |> List.ofArray)
     | _ -> ()
+
+let uploadFileName = @"C:\Temp\t.txt"
+let downloadFileName = @"C:\Temp\t.bak"
