@@ -1,5 +1,5 @@
 source https://nuget.org/api/v2
 
-nuget Akka.Fsharp
+nuget Akka.FSharp
 nuget Akka.Serialization.Wire
 nuget SSH.NET
