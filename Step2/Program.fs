@@ -26,12 +26,12 @@
 
         sftp <! Connect
         let remoteUrl = Url "/"
-        let result : SftpFileInfo list option = (sftp <? ListDirectory remoteUrl |> Async.RunSynchronously)
+        let result : SftpFileInfo list = (sftp <? ListDirectory remoteUrl |> Async.RunSynchronously)
         printfn ""
         match result with
-        | Some x -> x |> Seq.iter (fun y -> 
-            printfn "%s: %s" (y.IsDirectory |> function | true -> "Directory" | false -> "File") y.Name)
-        | None -> printfn "The remote directory is empty"
+        | [] -> printfn "The remote directory is empty"
+        | xs -> xs |> Seq.iter (fun x -> 
+            printfn "%s: %s" (x.IsDirectory |> function | true -> "Directory" | false -> "File") x.Name)
         sftp <! Disconnect
 
     [<EntryPoint>]
