@@ -1,6 +1,7 @@
 ﻿module Application
 
     open System
+    open System.IO
     open Akka
     open Akka.FSharp
     open ClientFactory
@@ -14,10 +15,12 @@
         cprintfn ConsoleColor.Green "SSH.NET: Connected."
         cprintfn ConsoleColor.Cyan "SSH.NET: Checking if directory <directory name> exists..."
         cprintfn ConsoleColor.Green "SSH.NET: Directory <directory name> exists."
-        cprintfn ConsoleColor.Cyan "SSH.NET: Uploading file <file name>..."
-        cprintfn ConsoleColor.Green "SSH.NET: File <file name> is uploaded."
-        cprintfn ConsoleColor.Cyan "SSH.NET: Downloading file <file name>..."
-        cprintfn ConsoleColor.Green "SSH.NET: File <file name> is downloaded."
+        cprintfn ConsoleColor.Cyan "SSH.NET: Beginning uploading of file <file name>..."
+        cprintfn ConsoleColor.Green "SSH.NET: File <file name> is being uploaded."
+        cprintfn ConsoleColor.Cyan "SSH.NET: Requesting cancel..."
+        cprintfn ConsoleColor.Green "SSH.NET: Cancel requested."
+        cprintfn ConsoleColor.Cyan "SSH.NET: Ending uploading of file <file name>..."
+        cprintfn ConsoleColor.Green "SSH.NET: Ended file upload."
         printfn "    pause for about 10 seconds"
         cprintfn ConsoleColor.Cyan "SSH.NET: Disconnecting..."
         cprintfn ConsoleColor.Green "SSH.NET: Disconnected."
@@ -28,7 +31,8 @@
         let system = System.create "system" <| Configuration.load ()
         let sftp = spawn system "sftp" <| sftpActor clientFactory
 
-        let localPath = "Wire.dll"
+        let baseDir = AppDomain.CurrentDomain.BaseDirectory
+        let localPath = Path.Combine(baseDir, @"Wire.dll")
         let remotePath = "/test/12345.dll"
         sftp <! UploadFile (UncPath localPath, Url remotePath)
         Async.Sleep 2000 |> Async.RunSynchronously

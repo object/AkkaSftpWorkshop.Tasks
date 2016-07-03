@@ -12,7 +12,7 @@ module SftpActors
         | DownloadFile of UncPath * Url
 
     // Tip: Use IClientFactory.CreateFileStreamProvider to obtain a local file stream for reading and writing.
-    // ISftpClient.UploadFile and ISftpClient.UploadFile are your friends to implement upload and download commands.
+    // ISftpClient.UploadFile and ISftpClient.DownloadFile are your friends to implement upload and download commands.
 
     // Tip: Use ensureParentDirectoryExists to create remote directories prior to uploading a file.
 

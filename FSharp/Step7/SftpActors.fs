@@ -18,7 +18,7 @@ module SftpActors
         | Cancelled
         | Error of string
 
-    // Tip: sftpGetHash takes an SftpCommand as the input and returns hash value that should be the same for same files.
+    // Tip: sftpGetHash takes an SftpCommand as the input and returns hash value that should be the same for same remote files.
 
     let sftpGetHash (o : obj) =
         null

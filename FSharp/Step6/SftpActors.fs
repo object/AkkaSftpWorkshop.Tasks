@@ -24,7 +24,7 @@ module SftpActors
     // Tip: Write asyncCallback function that will take IAsyncResult, invoke EndUploadFile or EndDownloadFile 
     // and send Completed, Cancelled or Error message to the sender's mailbox.
 
-    // Tip: In addition to "connected" and "disconnected" function you will need a function "tranfserring"
+    // Tip: In addition to "connected" and "disconnected" functions you will need a function "tranfserring"
     // that will correspond to the state of the actor when file transfer is in progress
 
     let sftpActor (clientFactory : IClientFactory) (mailbox: Actor<_>) =

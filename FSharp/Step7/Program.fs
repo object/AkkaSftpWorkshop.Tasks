@@ -1,6 +1,7 @@
 ﻿module Application
 
     open System
+    open System.IO
     open Akka
     open Akka.FSharp
     open ClientFactory
@@ -17,9 +18,9 @@
                 <| sftpActor clientFactory 
                 <| [SpawnOption.Router(Routing.ConsistentHashingPool(10).WithHashMapping(Routing.ConsistentHashMapping sftpGetHash))]
 
-
         for fileNumber in 1..10 do
-            let localPath = UncPath "Wire.dll"
+            let baseDir = AppDomain.CurrentDomain.BaseDirectory
+            let localPath = UncPath <| Path.Combine(baseDir, @"Wire.dll")
             let remotePath = Url <| sprintf "/test/12345-%d-%d.dll" roundNumber fileNumber
             sftp <! UploadFile (localPath, remotePath)
 

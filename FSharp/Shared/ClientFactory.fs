@@ -1,5 +1,6 @@
 ﻿module ClientFactory
 
+    open System
     open System.IO
     open SftpClient
     open SshNetClient
@@ -8,8 +9,11 @@
     let private ftpRoot = "sftp"
 
     let createClientFactory () =
-        if not (Directory.Exists(ftpRoot)) then Directory.CreateDirectory(ftpRoot) |> ignore
-        LocalFileClientFactory(ftpRoot, "", 0<s/MB>)
+        let rootDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ftpRoot)
+        if not (Directory.Exists(rootDir)) then Directory.CreateDirectory(rootDir) |> ignore
+        LocalFileClientFactory(rootDir, "", 0<s/MB>)
 
     let createClientFactoryWithTransferDelay (transferDelay) =
-        LocalFileClientFactory(ftpRoot, "", transferDelay)
+        let rootDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ftpRoot)
+        if not (Directory.Exists(rootDir)) then Directory.CreateDirectory(rootDir) |> ignore
+        LocalFileClientFactory(rootDir, "", transferDelay)

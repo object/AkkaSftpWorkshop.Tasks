@@ -1,6 +1,7 @@
 ﻿module Application
 
     open System
+    open System.IO
     open Akka
     open Akka.FSharp
     open ClientFactory
@@ -27,10 +28,11 @@
         let system = System.create "system" <| Configuration.load ()
         let sftp = spawn system "sftp" <| sftpActor clientFactory
 
-        let localPath = UncPath "Wire.dll"
+        let baseDir = AppDomain.CurrentDomain.BaseDirectory
+        let localPath = UncPath <| Path.Combine(baseDir, @"Wire.dll")
         let remotePath = Url "/test/12345.dll"
         sftp <! UploadFile (localPath, remotePath)
-        let localPath = UncPath "Wire.bak"
+        let localPath = UncPath <| Path.Combine(baseDir, @"Wire.bak")
         sftp <! DownloadFile (localPath, remotePath)
         printfn ""
 
