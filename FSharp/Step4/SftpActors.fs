@@ -14,6 +14,10 @@ module SftpActors
     // Tip: Use IClientFactory.CreateFileStreamProvider to obtain a local file stream for reading and writing.
     // ISftpClient.UploadFile and ISftpClient.UploadFile are your friends to implement upload and download commands.
 
+    // Tip: Use ensureParentDirectoryExists to create remote directories prior to uploading a file.
+
+    // Tip: Use noProgressCallback helper function when calling API methods that require callback function.
+
     let sftpActor (clientFactory : IClientFactory) (mailbox: Actor<_>) =
         let rec loop () =
             actor {

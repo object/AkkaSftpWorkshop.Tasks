@@ -29,8 +29,9 @@ let rec createDirectoryTree (connection : ISftpClient) parentPath (dirs : string
     match dirs with
     | [] -> ()
     | x :: xs ->
-        connection.CreateDirectory(sprintf "%s/%s" parentPath x)
-        createDirectoryTree connection (sprintf "%s/%s" parentPath x) xs
+        let dir = sprintf "%s/%s" parentPath x
+        connection.CreateDirectory(dir)
+        createDirectoryTree connection dir xs
         
 let ensureParentDirectoryExists (connection : ISftpClient) (remotePath : string) =
     match remotePath.LastIndexOf('/') with
@@ -39,6 +40,3 @@ let ensureParentDirectoryExists (connection : ISftpClient) (remotePath : string)
         if not (connection.DirectoryExists(dir)) then
             createDirectoryTree connection "" (dir.Split([|'/'|], StringSplitOptions.RemoveEmptyEntries) |> List.ofArray)
     | _ -> ()
-
-let uploadFileName = @"C:\Temp\t.txt"
-let downloadFileName = @"C:\Temp\t.bak"

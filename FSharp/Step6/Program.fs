@@ -28,8 +28,8 @@
         let system = System.create "system" <| Configuration.load ()
         let sftp = spawn system "sftp" <| sftpActor clientFactory
 
-        let localPath = uploadFileName
-        let remotePath = "/152818/no/open/test/12345.txt"
+        let localPath = "Wire.dll"
+        let remotePath = "/test/12345.dll"
         sftp <! UploadFile (UncPath localPath, Url remotePath)
         Async.Sleep 2000 |> Async.RunSynchronously
         sftp <! Cancel remotePath

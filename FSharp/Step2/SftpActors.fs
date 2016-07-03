@@ -11,6 +11,8 @@ module SftpActors
 
     // Tip: after invoking SFTP connection ListDirectory method send the result to the sender.
 
+    // Tip: Use noProgressCallback helper function when calling API methods that require callback function.
+
     let sftpActor (clientFactory : IClientFactory) (mailbox: Actor<_>) =
         let rec loop () =
             actor {

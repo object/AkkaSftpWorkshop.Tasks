@@ -19,8 +19,8 @@
                     <| [SpawnOption.Router(Routing.SmallestMailboxPool(poolSize))]
 
         for fileNumber in 1..10 do
-            let localPath = UncPath uploadFileName
-            let remotePath = Url <| sprintf "/152818/no/open/test/12345-%d-%d.txt" roundNumber fileNumber
+            let localPath = UncPath "Wire.dll"
+            let remotePath = Url <| sprintf "/test/12345-%d-%d.dll" roundNumber fileNumber
             sftp <! UploadFile (localPath, remotePath)
 
     [<EntryPoint>]
