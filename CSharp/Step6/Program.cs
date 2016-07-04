@@ -43,7 +43,7 @@ namespace Application
             Console.WriteLine();
         }
 
-        private async static Task Run()
+        private static async Task Run()
         {
             var clientFactory = ClientFactory.Create(10);
             var actorSystem = ActorSystem.Create("MyActorSystem");

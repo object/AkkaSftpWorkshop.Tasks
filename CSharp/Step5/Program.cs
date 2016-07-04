@@ -39,7 +39,7 @@ namespace Application
             Console.WriteLine();
         }
 
-        private async static Task Run(int roundNumber, int fileCount, int poolSize, int transferDelay)
+        private static async Task Run(int roundNumber, int fileCount, int poolSize, int transferDelay)
         {
             var clientFactory = ClientFactory.Create();
             var actorSystem = ActorSystem.Create("MyActorSystem" + roundNumber);

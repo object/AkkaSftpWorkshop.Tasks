@@ -55,9 +55,9 @@ namespace Shared
 
 	public class SshNetClient : ISftpClient, IDisposable
 	{
-		private SftpConnectionDetails _connectionDetails;
-		private SftpClient _connection;
-		private static object _locker = new object();
+		private readonly SftpConnectionDetails _connectionDetails;
+		private readonly SftpClient _connection;
+		private static readonly object _locker = new object();
 		private static Dictionary<string, PrivateKeyFile> _keyFiles = new Dictionary<string, PrivateKeyFile>();
 
 		public SshNetClient(SftpConnectionDetails connectionDetails)
