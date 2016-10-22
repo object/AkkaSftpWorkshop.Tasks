@@ -2,5 +2,6 @@ source https://nuget.org/api/v2
 
 nuget Akka
 nuget Akka.Serialization.Wire
+nuget Wire 0.0.6
 nuget SSH.NET
-nuget Newtonsoft.Json ~> 8
+nuget Newtonsoft.Json ~> 9
