@@ -12,6 +12,7 @@ NUGET
     Akka.Serialization.Wire (1.1.1.28-beta)
       Akka (>= 1.1.1)
       Wire (>= 0.0.6)
+    FSharp.Core (4.0.0.1) - redirects: force
     FsPickler (1.8.1)
     FSPowerPack.Core.Community (3.0.0)
     FSPowerPack.Linq.Community (3.0.0)

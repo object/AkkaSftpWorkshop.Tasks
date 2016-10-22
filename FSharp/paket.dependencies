@@ -6,3 +6,4 @@ nuget Wire 0.0.6
 nuget FsPickler ~> 1
 nuget SSH.NET
 nuget Newtonsoft.Json ~> 9
+nuget FSharp.Core redirects: force
